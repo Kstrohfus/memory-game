@@ -34,7 +34,7 @@ const cardArray = [
 
     {
     name: "purple",
-    img: "./img/blue-flower.png"
+    img: "./img/purple-flower.png"
 
 },
 
