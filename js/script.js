@@ -70,9 +70,14 @@ const cardArray = [
 }
 ]
 
+cardArray.sort(() => 0.5 - Math.random())
+
+
 const grid = document.querySelector(".grid")
+const resultDisplay = document.querySelector("#result")
 var cardsChosen = []
 var cardsChosenId = []
+var cardsWon = []
 
 
 //Creating board
@@ -94,10 +99,34 @@ createBoard()
 
 //check for match
 function checkForMatch() {
-    var vards = document.querySelectorAll
+    var cards = document.querySelectorAll("img")
+    const optionOneId = cardsChosendId[0]
+    const optionTwoId = cardsChosenId[1]
+
+    if (cardsChosen[0] === cardsChosen[1]) {
+
+        alert("You found a match!!!")
+
+        cards[optionOneId].setAttribute("src", "./img/multi-question.png")
+        cards[optionTwoId].setAttribute("src", "./img/multi-question.png")
+        cardsWon.push(cardsChosen) 
+
+    } else {
+
+        cards[optionOneId].setAttribute("src", "./img/question-mark.png")
+        cards[optionTwoId].setAttribute("src", "./img/question-mark.png") 
+        alert("No match there! Keep trying!")
+    }
+    cardsChosen = []
+    cardsChosenId = []
+    resultDisplay.textContent = cardsWon.length
+    if (cardsWon.length === cardArray.length/2)
+    resultDisplay.textContent = "Congratulations! You did it!"
+    }
 }
 
 //flipping card
+
 function flipCard() {
     var cardId = this.getAttribute("data-id")
 
